@@ -1,3 +1,12 @@
+var input = document.getElementById('Filter_Input');
+
+input.addEventListener("keyup",function(event){
+	if(event.keyCode === 13){
+		event.preventDefault();
+		document.getElementById("Input_Button").click();
+	}
+});
+
 function tagFilter(argument) {
 	var tags = document.getElementById('Filter_Input').value;
 	tags = tags.split(' ');
@@ -10,6 +19,7 @@ function tagFilter(argument) {
 			case "ak":
 			case "ark":
 			case "tag-ark":
+			case "arknight":
 				tags[i] = "tag-ark";
 				break;
 			case "fatego":
@@ -29,6 +39,17 @@ function tagFilter(argument) {
 			case "others":
 			case "tag-mis":
 				tags[i] = "tag-mis";
+				break;
+			case "digital":
+			case "dig":
+			case "tag-dig":
+				tags[i] = "tag-dig";
+				break;
+			case "scenery":
+			case "landscape":
+			case "scene":
+			case "tag-sce":
+				tags[i] = "tag-sce";
 				break;
 			default:
 				alert("no tag found for "+img[i]);
