@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link rel="stylesheet" type="text/css" href="Resc/css/gallery.css">
 </head>
-<body class="blue darken-1" onload="load_10(1,0,0)">
+<body class="blue darken-1" onload="load_10(1)">
 <div class="container">
 	<div class="card blue lighten-2">
 			<div class="card-content row valign-wrapper">
@@ -541,10 +541,9 @@
 	</div>
 	<br>
 
-	<div class="center">
-		<p>Page</p>
-		<br>
-		<i class="small navigate_before"></i><p id="page_number">1</p><i class="small navigate_next"></i>
+	<div class="center row">
+		<p class="col s12">Page</p>
+		<i class="small material-icons col s4 hoverable" onclick="prev_page()">navigate_before</i><div id="page_number" class="col s4">1</div><i class="small material-icons col s4 hoverable" onclick="next_page()">navigate_next</i>
 	</div>
 
 	<script type="text/javascript" src="Resc/Materialize/js/materialize.min.js"></script>

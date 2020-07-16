@@ -1,4 +1,6 @@
 var input = document.getElementById('Filter_Input');
+var list = document.getElementsByClassName('imgCont');
+var present_page = 1;
 
 input.addEventListener("keyup",function(event){
 	if(event.keyCode === 13){
@@ -7,26 +9,54 @@ input.addEventListener("keyup",function(event){
 	}
 });
 
-function load_10(page, list, list_proc) {
-	var img = document.getElementsByClassName('imgCont');
-	if(list_proc == 1)
-		img = list;
+function load_10(page) {
+	// var img = document.getElementsByClassName('imgCont');
+	// if(list_proc == 1)
+	// 	img = list;
+	var img = list;
 	var limit = 10;
-	for(var i = 0 + (page-1)*10; i < img.length; i++){
-		if(!img[i].classList.contains('tag-hide')){
+	for (var i = 0; i < img.length; i++) {
+		img[i].classList.remove('tag-hide');
+	}
+
+
+	for(var i = 0; i < img.length; i++){
+		if(!img[i].classList.contains('tag-hide') && i>=(page-1)*10){
 			if(limit>0)
 				limit--;
 			else
 				img[i].classList.add('tag-hide');
 		}
+		else
+			img[i].classList.add('tag-hide');
 	}
+}
+
+function next_page(argument) {
+	var l = list.length;
+	var m = (present_page)*10;
+	if(m<l){
+		present_page++;
+		load_10(present_page);
+		document.getElementById('page_number').innerText = present_page;
+	}else
+	alert("last page available");
+}
+
+function prev_page(argument) {
+	if(present_page>1){
+		present_page--;
+		load_10(present_page);
+		document.getElementById('page_number').innerText = present_page;
+	}else
+	alert("currently at first page");
 }
 
 function tagFilter(argument) {
 	var tags = document.getElementById('Filter_Input').value;
 	tags = tags.split(' ');
 	var img = document.getElementsByClassName("imgCont");
-	var list;
+	list = [];
 
 	if(tags[0] != '')
 	for (var i = 0; i < tags.length; i++) {
@@ -88,5 +118,7 @@ function tagFilter(argument) {
 		else
 			img[i].classList.add('tag-hide');
 	}
-	load_10(1, list, 1);
+	present_page = 1;
+	document.getElementById('page_number').innerText = present_page;
+	load_10(1);
 }
